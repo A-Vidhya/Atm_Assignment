@@ -1,0 +1,59 @@
+package Atm;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+
+import java.util.Scanner;
+public class Class1
+{
+public static void main(String[] args)
+{
+Scanner sc=new Scanner(System.in);
+try
+{
+Class.forName("oracle.jdbc.OracleDriver");
+Connection con;
+String url="jdbc:oracle:thin:@Localhost:1521:xe";
+String username="system";
+String password="*123vid";
+con=DriverManager.getConnection(url,username,password);
+if(con!=null)
+{
+System.out.println("JDBC Connection Established");
+}
+else
+{
+System.out.println("JDBC Connection Not Established");
+}
+
+Statement stmt=con.createStatement();
+//stmt.executeUpdate("create table LoadCash1( Denomination number(4),Numbers number(4),value number(4))");
+PreparedStatement ps;
+System.out.println("Enter the no of rows to be inserted");
+int n=sc.nextInt();
+for(int i=0;i<n;i++)
+{
+ps=con.prepareStatement("insert into LoadCash1 values(?,?,?)");
+
+System.out.println("Enter the Denomination:");
+int Denomination=sc.nextInt();
+ps.setInt(1,Denomination);
+
+System.out.println("Enter the Number:");
+int  Number=sc.nextInt();
+ps.setInt(2,Number);
+
+System.out.println("Enter the Value:");
+int Value=sc.nextInt();
+ps.setInt(3,Value);
+System.out.println("");
+ps.executeUpdate();
+}
+}
+catch (Exception e)
+{
+System.out.println("Exception");
+}
+}
+}
