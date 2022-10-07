@@ -1,0 +1,65 @@
+package Atm;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.util.Scanner;
+public class Class2 
+//extends Class1
+{
+public static void main(String[] args)
+{
+Scanner sc=new Scanner(System.in);
+try
+{
+Class.forName("oracle.jdbc.OracleDriver");
+Connection con;
+String url="jdbc:oracle:thin:@Localhost:1221:xe";
+String username="system11";
+String password="*123vid";
+con=DriverManager.getConnection(url,username,password);
+if(con!=null)
+{
+System.out.println("JDBC Connection Established");
+}
+else
+{
+System.out.println("JDBC Connection Not Established");
+}
+Statement stmt=con.createStatement();
+//stmt.executeUpdate("create table Customs(AccNo number(4),AccountHolder varchar2(30),PinNo number(3),AccountBalance varchar2(10))");
+PreparedStatement ps1;
+System.out.println("Enter no of rows");
+int n=sc.nextInt();
+for(int i=1;i<n;i++)
+{
+ps1=con.prepareStatement("insert into Customs values(?,?,?)");
+
+System.out.println("Enter the Account Number:");
+String Acc_No=sc.next();
+ps1.setString(1,Acc_No);
+
+System.out.println("Enter the Accountholder name:");
+String Account_Holder =sc.next();
+ps1.setString(2,Account_Holder );
+
+System.out.println("Enter the Pin_Number");
+String Pin_Number=sc.next();
+ps1.setString(3,Pin_Number);
+
+System.out.println("Enter the Account_Balance");
+String Account_Balance=sc.next();
+ps1.setString(4,Account_Balance);
+
+ps1.executeUpdate();
+}
+
+}
+catch (Exception e)
+{
+System.out.println("Exception");
+}
+}
+
+
+}
