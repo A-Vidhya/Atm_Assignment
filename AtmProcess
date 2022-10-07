@@ -1,0 +1,69 @@
+package Atm;
+import java.util.*;
+public class Class3 
+{
+	public static void main(String args[] )  
+	{
+		Scanner sc=new Scanner(System.in);
+	int balance,withdraw, deposit;  
+	System.out.println("Enter your Balance");
+	balance=sc.nextInt();
+	while(true)  
+	{  
+	    System.out.println("----WELCOME TO ATM SERVICE----");  
+	    System.out.println("Enter 1 to DepositCash");  
+	    System.out.println("Enter 2 to WithdrawCash");  
+	    System.out.println("Enter 3 to Check Balance");  
+	    System.out.println("Enter 4 for Transfer");  
+	    System.out.println("Enter 5 for EXIT"); 
+	    System.out.print("Choose Your Choice:");  
+	    int choice = sc.nextInt();  
+	    switch(choice)  
+	    {  
+	        case 2:  
+	        System.out.print("Enter money to be withdrawn:");  
+	        withdraw = sc.nextInt();  
+	    if(balance >= withdraw)  
+		{    
+		    balance = balance - withdraw;  
+		    System.out.println("Your money is withdrawed");  
+		}  
+		else  
+		{   
+		    System.out.println("Insufficient Balance");  
+		}  
+	    System.out.println("");  
+	    break;  
+	    case 1:  
+	    System.out.print("Enter money to be deposited:");  
+	    deposit = sc.nextInt();  
+	    balance = balance + deposit;  
+		System.out.println("Your Money has been successfully deposited");  
+		System.out.println("");  
+		break;  
+		case 3:  
+	    System.out.println("Balance : "+balance);    
+		break;  
+	    case 4:
+	        	System.out.println("Enter the pin number to transfer money");
+	        	int pin=sc.nextInt();
+	        	System.out.println("Enter the amount");
+	        	int amu=sc.nextInt();
+	        	if(amu<balance)
+	        	{
+	        		System.out.println("Amoumt is Transferred");
+	        		balance-=amu;
+	        	}
+	        	else
+	        	{
+	        		 System.out.println("Insufficient Balance");  
+	        	}
+	        		
+	        		break;
+	     case 5:  
+	    System.out.println("ThankYou"); 
+	    System.exit(0); 
+	   }  
+	}  
+}
+}
